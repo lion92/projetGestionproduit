@@ -1,0 +1,22 @@
+<div class="background-wrap">
+  <div class="background"></div>
+</div>
+
+<div id="accesspanel">
+  <h1 id="litheader">Connexion Gestion des ventes et stock</h1>
+  <div class="inset">
+    <p>
+      <input type="text" [(ngModel)]="this.email" name="username" id="email" placeholder="Email address">
+    </p>
+    <p>
+      <input type="password" [(ngModel)]="this.password"name="password" id="password" placeholder="Access code">
+    </p>
+
+  <button class="btn btn-danger" (click)="this.login()">Login</button>
+    <button class="btn btn-danger" (click)="this.deconnexion()">Deconnexion</button>
+  </div>
+  <p class="p-container">
+    <input type="submit" name="Login" id="go" value="Connexion">
+  </p>
+</div>
+

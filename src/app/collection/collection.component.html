@@ -1,0 +1,61 @@
+<div class="container information"><p>{{this.messageService.getMessage()}}</p></div>
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Manage <b>Collection</b></h2>
+        </div>
+        <div class="col-sm-6">
+          <a (click)="openDialog()" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Collection</span></a>
+          <a (click)="supprimerListCollection(this.listId)" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-secondary"(click)="toggle()">{{isOpen?"Open": "close" }}</button>
+    <table  id="tableClient" class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+        </th>
+        <th>id Collection</th>
+        <th>nom Produit</th>
+        <th>id user</th>
+        <th> Date ajout du produit dans la collection</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let collection of pageSlice">
+        <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="{{collection.id}}" (change)="onChangeSelect(collection.id, $event)" value="1">
+								<label for="checkbox1"></label>
+							</span>
+        </td>
+        <td>{{collection.id}}</td>
+        <td>{{collection.nom}}</td>
+        <td>{{collection.idUser}}</td>
+        <td>{{collection.dateAjout}}</td>
+        <td>
+          <a  [routerLink]="['/updateCollection',collection.id]" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+          <a (click)="this.supprimerCollection(collection.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+    <button class="btn btn-danger"(click)="generatePDF()">Download PDF</button>
+    <div class="clearfix">
+      <mat-paginator [length]="this.listCollection.length"
+                     [pageSize]="1"
+                     [pageSizeOptions]="[1,3,6,9]"
+                     (page)="onChangeChange($event)"
+                     aria-label="Select page">
+      </mat-paginator>
+    </div>
+    <!-- Edit Modal HTML -->

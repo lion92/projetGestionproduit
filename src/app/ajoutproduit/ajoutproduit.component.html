@@ -1,0 +1,45 @@
+<h1>Création de Produit</h1>
+<div class="container information"><p>{{this.messageService.getMessage()}}</p></div>
+<div class="container"><app-categorie></app-categorie>
+
+
+<div class="form">
+  <form class="scrollbar-primary">
+
+    <div class="form-input">
+      <label for="nom">Nom du Produit</label>
+      <input type="text" name="nom" id="nom"   [(ngModel)]="this.nom" placeholder="Nom du produit" required/>
+
+
+    </div>
+    <div class="form-input">
+      <label for="nom">Id Categorie</label>
+      <input type="text" name="idCategorie" id="idCtaegorie" [(ngModel)]="this.idCategorie"placeholder="Id Categorie" required/>
+    </div>
+
+    <div class="form-input">
+      <label for="prixproduit">Prix</label>
+      <input type="text" name="prix"   id="prixproduit" [(ngModel)]="this.Prix" placeholder="Prix" required/>
+
+
+    </div>
+    <div class="form-input">
+      <label for="stock">stock</label>
+      <input type="text" name="stock"   id="stock" [(ngModel)]="this.stock" placeholder="Idproduit" required/>
+    </div>
+
+    <div class="form-input">
+      <label for="idProduit">idproduit</label>
+      <input type="text" name="idProduit"   id="idProduit" [(ngModel)]="this.idProduit" placeholder="Idproduit" required/>
+    </div>
+
+
+    <button type="button" (click)="modifierProduit()" name="creer" id="modifier">
+      Modifier
+    </button>
+    <button (click)="ajouterProduit()" type="button" name="creer" id="creer">
+      Créer
+    </button>
+  </form>
+</div>
+</div>

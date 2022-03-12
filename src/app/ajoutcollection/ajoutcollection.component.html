@@ -1,0 +1,50 @@
+<p>ajoutpersonne works!</p>
+<h1>Création de Produit</h1>
+<hr/>
+<app-produit></app-produit>
+<app-personne></app-personne>
+
+<!--PROGRESS BAR !-->
+<div id="top1" class="top-one" style="height: 20px; top: auto; bottom: 0px; transition-duration: 3s;">
+  <div class="colors"></div>
+</div>
+
+
+<div class="form">
+  <form class="scrollbar-primary">
+
+    <div class="form-input">
+      <label for="nom">Nom de la collection</label>
+      <input type="text" name="nom" id="nom" value="" [(ngModel)]="this.nom" placeholder="Nom de la collection" required/>
+
+    </div>
+
+    <div class="form-input">
+      <label for="idUser">idUser</label>
+      <input type="text" name="idUser" id="IdUser" value="" [(ngModel)]="this.idUser" placeholder="idUser" required/>
+
+
+    </div>
+
+    <div class="form-input">
+      <label for="idProduit">id Produit</label>
+      <input type="text" name="idProduit" id="idProduit" value="" [(ngModel)]="this.idproduit" placeholder="idProduit" required/>
+    </div>
+
+
+    <div class="form-input">
+      <label for="idCollection">id Collection</label>
+      <input type="text" name="idCollection" id="idCollection" value="" [(ngModel)]="this.collectionId" placeholder="id Collection" required/>
+    </div>
+
+
+
+    <button type="button"  (click)="modifierCollection()" name="creer" id="modifier">
+      Modifier
+    </button>
+    <button type="button" (click)="ajouterCollection()" name="creer" id="creer">
+      Créer
+    </button>
+  </form>
+</div>
+
