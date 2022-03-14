@@ -18,11 +18,14 @@ export class AppComponent implements OnInit, OnChanges{
 
 
   ngOnInit(): void {
+
   this.email=""+localStorage.getItem("email");
+  this.userSerVice.boolConnecterTest();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.email=""+localStorage.getItem("email");
+    this.userSerVice.boolConnecterTest();
 
   }
   rechargeClick() {

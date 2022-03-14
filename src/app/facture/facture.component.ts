@@ -37,6 +37,21 @@ public nomVendeur:string=""
       });
     }
   }
+  prixtotalTTC():number{
+  let total=0;
+  this.venteEnfantList.forEach(vente=>{
+    total+=vente.PrixTotal*(1+(vente.taxe/100));
+  })
+    return total;
+  }
+
+  quantiteTotal():number{
+    let total=0;
+    this.venteEnfantList.forEach(vente=>{
+      total+=vente.quantite;
+    })
+    return total;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
 

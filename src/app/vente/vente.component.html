@@ -17,7 +17,7 @@
       </div>
     </div>
     <button class="btn btn-danger"(click)="exportexcel()">Export to Excel</button>
-    <table  id="tableVente" class="table table-striped table-hover">
+    <table  id="tableVente" class="table table-striped table-hover table-responsive">
 
       <thead>
       <tr>
@@ -33,36 +33,45 @@
         <th>Client</th>
         <th>Produit</th>
         <th>Quantite</th>
+        <th>Stock total</th>
+        <th>vente total</th>
+        <th>Stock restant</th>
         <th>Prix total</th>
         <th>Taxe</th>
         <th>Date de la vente</th>
         <th>id de la Vente</th>
         <th>Actions</th>
       </tr>
+
       </thead>
       <tbody>
-      <tr *ngFor="let vente of pageSlice">
+      <tr *ngFor="let vente of liststockactuell" >
         <td>
 							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="{{vente.idvente}}" (change)="onChangeSelect(vente.idvente, $event)" value="1">
+								<input type="checkbox" id="checkbox1" [name]="vente.vente.idvente" (change)="onChangeSelect(vente.vente.idvente, $event)" value="1">
 								<label for="checkbox1"></label>
 							</span>
         </td>
-        <td>{{vente.idUser}}</td>
-        <td>{{vente.nom}}</td>
-        <td>{{vente.idClient}}</td>
-        <td>{{vente.idProduit}}</td>
-        <td>{{vente.quantite}}</td>
-        <td>{{vente.PrixTotal}}</td>
-        <td>{{vente.taxe}}</td>
-        <td>{{vente.dateVente}}</td>
-        <td>{{vente.idvente}}</td>
+        <td>{{vente.vente.idUser}}</td>
+        <td>{{vente.vente.nom}}</td>
+        <td>{{vente.vente.idClient}}</td>
+        <td>{{vente.vente.idProduit}}</td>
+        <td>{{vente.vente.quantite}}</td>
+        <td>{{vente.vente.stock}}</td>
+        <td>{{vente.venteactuelle}}</td>
+        <td>{{this.soustraction(vente.vente.stock,vente.venteactuelle)}}</td>
+        <td>{{vente.vente.PrixTotal}}</td>
+        <td>{{vente.vente.taxe}}</td>
+        <td>{{vente.vente.dateVente}}</td>
+        <td>{{vente.vente.idvente}}</td>
 
         <td>
-          <a [routerLink]="['/updateVente',vente.idvente]" href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-          <a (click)="this.supprimerVente(vente.idvente)" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+          <a [routerLink]="['/updateVente',vente.vente.idvente]" href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+          <a (click)="this.supprimerVente(vente.vente.idvente)" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
         </td>
       </tr>
+
+
 
       </tbody>
     </table>
@@ -70,7 +79,7 @@
     <div class="clearfix">
       <mat-paginator [length]="this.listVente.length"
                      [pageSize]="1"
-                     [pageSizeOptions]="[1,3,6,9]"
+                     [pageSizeOptions]="[1,6,20,40]"
                      (page)="onChangeChange($event)"
                      aria-label="Select page">
       </mat-paginator>

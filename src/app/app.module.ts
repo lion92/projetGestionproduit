@@ -73,6 +73,8 @@ import { FactureComponent } from './facture/facture.component';
 import { RegisterComponent } from './register/register.component';
 import { CollectionComponent } from './collection/collection.component';
 import { AjoutcollectionComponent } from './ajoutcollection/ajoutcollection.component';
+import { InsertcollectionComponent } from './insertcollection/insertcollection.component';
+import { AjoutinsertcollectionComponent } from './ajoutinsertcollection/ajoutinsertcollection.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +94,9 @@ import { AjoutcollectionComponent } from './ajoutcollection/ajoutcollection.comp
     FactureComponent,
     RegisterComponent,
     CollectionComponent,
-    AjoutcollectionComponent
+    AjoutcollectionComponent,
+    InsertcollectionComponent,
+    AjoutinsertcollectionComponent
   ],
   imports: [
     BrowserModule,

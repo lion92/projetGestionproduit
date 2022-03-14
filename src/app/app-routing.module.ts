@@ -18,6 +18,8 @@ import{
 } from "./guardlink.service";
 import {AjoutcollectionComponent} from "./ajoutcollection/ajoutcollection.component";
 import {CollectionComponent} from "./collection/collection.component";
+import {AjoutinsertcollectionComponent} from "./ajoutinsertcollection/ajoutinsertcollection.component";
+import {InsertcollectionComponent} from "./insertcollection/insertcollection.component";
 
 const routes: Routes = [
   {
@@ -37,6 +39,8 @@ const routes: Routes = [
     path:"updateCategorie",component:CategorieComponent,canActivate:[GuardlinkService]
   },{
     path:"updateCategorie/:id",component:AjoutcategorieComponent,canActivate:[GuardlinkService]
+  },{
+    path:"updateCollectionInsert/:id",component:AjoutinsertcollectionComponent,canActivate:[GuardlinkService]
   },
   {
     path:"updateVente",component:VenteComponent,canActivate:[GuardlinkService]
@@ -49,6 +53,8 @@ const routes: Routes = [
   ,
   {
     path:"updateCollection/:id",component:AjoutcollectionComponent,canActivate:[GuardlinkService]
+  },{
+    path:"collectionInsert",component:InsertcollectionComponent,canActivate:[GuardlinkService]
   },
 
   {
@@ -71,6 +77,8 @@ const routes: Routes = [
     path:"ajoutproduit",component:AjoutproduitComponent,canActivate:[GuardlinkService]
   },   {
     path:"ajoutcollection",component:AjoutcollectionComponent,canActivate:[GuardlinkService]
+  },   {
+    path:"ajoutcollectionInsert",component:AjoutinsertcollectionComponent,canActivate:[GuardlinkService]
   }, {
     path:"ajoutvente",component:AjoutventeComponent,canActivate:[GuardlinkService]
   },  {

@@ -8,4 +8,5 @@ export default interface Vente {
   taxe:number;
   dateVente:string;
   nom:string;
+  stock:string;
 }

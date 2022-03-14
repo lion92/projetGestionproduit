@@ -13,6 +13,7 @@ import jsPDF from "jspdf";
 import {MessageService} from "../message.service";
 import {FactureComponent} from "../facture/facture.component";
 import * as XLSX from 'xlsx';
+import {Observable} from "rxjs";
 @Component({
   selector: 'app-vente',
   templateUrl: './vente.component.html',
@@ -23,9 +24,11 @@ export class VenteComponent implements OnInit, OnChanges {
   public listVente: Vente[] = [];
   public pageSlice: Vente[] = [];
   public listId: number[] = [];
+  public listStock:[]=[];
   message: string = "";
+  liststockactuell:any[]=[]
 
-  constructor(public messageService: MessageService, private dialog: MatDialog, public venteService: VenteService, private route: ActivatedRoute, private clientService: ClientService, private categoieService: CategorieService, private produiService: ProduitService, private router: Router) {
+  constructor(public produitservice:ProduitService,public messageService: MessageService, private dialog: MatDialog, public venteService: VenteService, private route: ActivatedRoute, private clientService: ClientService, private categoieService: CategorieService, private produiService: ProduitService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -34,11 +37,16 @@ export class VenteComponent implements OnInit, OnChanges {
       this.pageSlice = this.listVente.slice(0, 1);
       console.log("Ventttttttttttttttttte")
       console.log(data.message);
+      this.getVentTotal();
     })
     this.route.paramMap.subscribe(params => {
       let id = params.get("id");
       console.log(id);
     })
+
+
+
+
   }
 
   openDialog() {
@@ -55,6 +63,19 @@ export class VenteComponent implements OnInit, OnChanges {
       width: '50vw',
       autoFocus: false,
     });
+  }
+   public   getVentTotal(){
+    this.liststockactuell=[];
+    this.pageSlice.forEach(vente=>{
+      this.venteService.getventeTotalById$(vente.idProduit).subscribe(data=>{
+          this.liststockactuell.push({vente:vente,venteactuelle:+data.message[0]["sum(`quantite`)"]});
+        console.log("kkkk");
+        console.log(data.message[0]["sum(`quantite`)"]);
+        console.log(this.liststockactuell);
+
+      })
+    })
+
   }
 
   supprimerVente(idClient: number) {
@@ -87,6 +108,11 @@ export class VenteComponent implements OnInit, OnChanges {
       endIndex = this.listVente.length;
     }
     this.pageSlice = this.listVente.slice(startIndex, endIndex);
+    this.getVentTotal();
+  }
+  soustraction(num1:number, num2:number){
+    return (num1-num2);
+
   }
 
   onChangeSelect(clientId: number, $event: any) {
@@ -99,8 +125,9 @@ export class VenteComponent implements OnInit, OnChanges {
         this.listId.splice(index, 1);
       }
     }
-    console.log(this.listId);
+    console.log(this.listId);;
     this.listVenteFacture();
+
 
 
   }

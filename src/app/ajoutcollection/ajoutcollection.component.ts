@@ -51,7 +51,7 @@ export class AjoutcollectionComponent implements OnInit {
         this.messageService.setMessage(""+JSON.stringify(data.message));
         this.nom=this.listCollectionparId[0].nom;
         this.idUser=this.listCollectionparId[0].idUser;
-        this.idproduit=this.listCollectionparId[0].idProduit;
+
         this.collectionId=this.listCollectionparId[0].id;
 
         console.log(this.collectionId)
